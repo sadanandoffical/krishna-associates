@@ -1,0 +1,295 @@
+{% extends "web/base.html" %}
+
+{% block content %}
+
+<section class="admin-page">
+
+    <div class="container">
+
+        <div class="invoice-detail-page">
+
+            <a
+                href="/admin-invoices/"
+                class="invoice-detail__back"
+            >
+                ← Back to invoices
+            </a>
+
+
+            <div
+                id="invoiceDetailLoading"
+                class="admin-state"
+            >
+                Loading invoice...
+            </div>
+
+
+            <div
+                id="invoiceDetailError"
+                class="auth-message auth-message--error"
+                hidden
+            ></div>
+
+
+            <article
+                id="invoiceDetail"
+                class="invoice-detail"
+                hidden
+            >
+
+                <header class="invoice-detail__header">
+
+                    <div>
+
+                        <span class="admin-page__eyebrow">
+                            Invoice
+                        </span>
+
+                        <h1 id="invoiceDetailNumber"></h1>
+
+                        <p id="invoiceDetailDate"></p>
+
+                    </div>
+
+
+                    <span
+                        id="invoiceDetailStatus"
+                        class="status-badge"
+                    ></span>
+
+                </header>
+
+
+                <!-- Billing Details -->
+
+                <section class="invoice-detail__section">
+
+                    <h2>Billing Details</h2>
+
+                    <div class="invoice-detail__grid">
+
+                        <div class="invoice-detail__field">
+
+                            <span>Customer</span>
+
+                            <strong id="invoiceCustomerName">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Phone</span>
+
+                            <strong id="invoiceCustomerPhone">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Payee</span>
+
+                            <strong id="invoicePayeeName">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field invoice-detail__field--full">
+
+                            <span>Address</span>
+
+                            <strong id="invoicePayeeAddress">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Property Details -->
+
+                <section class="invoice-detail__section">
+
+                    <h2>Property Details</h2>
+
+                    <div class="invoice-detail__grid">
+
+                        <div class="invoice-detail__field">
+
+                            <span>Project</span>
+
+                            <strong id="invoiceProject">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Plot Area</span>
+
+                            <strong id="invoicePlotArea">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Plot Rate</span>
+
+                            <strong id="invoicePlotRate">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Plot Cost</span>
+
+                            <strong id="invoicePlotCost">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Payment Details -->
+
+                <section class="invoice-detail__section">
+
+                    <h2>Payment Details</h2>
+
+                    <div class="invoice-detail__grid">
+
+                        <div class="invoice-detail__field">
+
+                            <span>Paid Amount</span>
+
+                            <strong id="invoiceAmount">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Due Amount</span>
+
+                            <strong id="invoiceDueAmount">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Payment Type</span>
+
+                            <strong id="invoicePaymentType">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Total Paid</span>
+
+                            <strong id="invoiceTotalPaid">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Payment Mode</span>
+
+                            <strong id="invoicePaymentMode">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Transaction ID</span>
+
+                            <strong id="invoiceTransactionId">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field">
+
+                            <span>Bank Name</span>
+
+                            <strong id="invoiceBankName">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="invoice-detail__field invoice-detail__field--full">
+
+                            <span>Amount in Words</span>
+
+                            <strong id="invoiceAmountInWords">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <div class="invoice-detail__actions">
+
+                    <a
+                        href="#"
+                        id="invoicePdfButton"
+                        class="button button--primary"
+                    >
+                        Download PDF
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

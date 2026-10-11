@@ -1,0 +1,120 @@
+{% extends "web/base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-page__inner">
+
+        <div class="auth-card">
+
+            <div class="auth-card__brand">
+                <img
+                    src="{% static 'web/images/krishna-associates-logo.jpg' %}"
+                    alt="Krishna Associates"
+                >
+            </div>
+
+
+            <div class="auth-card__heading">
+
+                <span class="auth-card__eyebrow">
+                    Admin Portal
+                </span>
+
+                <h1>Welcome back</h1>
+
+                <p>
+                    Sign in to manage Krishna Associates.
+                </p>
+
+            </div>
+
+
+            <form
+                id="adminLoginForm"
+                class="auth-form"
+                novalidate
+            >
+
+                {% csrf_token %}
+
+                <div class="form-field">
+
+                    <label for="adminUsername">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminUsername"
+                        name="username"
+                        autocomplete="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                    <small
+                        class="form-field__error"
+                        data-error-for="username"
+                    ></small>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <small
+                        class="form-field__error"
+                        data-error-for="password"
+                    ></small>
+
+                </div>
+
+
+                <div
+                    id="adminLoginError"
+                    class="auth-message auth-message--error"
+                    role="alert"
+                    hidden
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="button button--primary auth-form__submit"
+                    id="adminLoginSubmit"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+
+            <a
+                href="/"
+                class="auth-back-link"
+            >
+                ← Back to website
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

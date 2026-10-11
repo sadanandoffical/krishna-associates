@@ -1,0 +1,116 @@
+{% extends "web/base.html" %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="container">
+
+        <div class="auth-card">
+
+            <div class="auth-card__header">
+
+                <span class="admin-page__eyebrow">
+                    Associate Portal
+                </span>
+
+                <h1>Associate Login</h1>
+
+                <p>
+                    Sign in to access your associate account.
+                </p>
+
+            </div>
+
+
+            <form
+                id="associateLoginForm"
+                class="auth-form"
+            >
+
+                {% csrf_token %}
+
+
+                <div class="form-field">
+
+                    <label for="associateId">
+                        Associate ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="associateId"
+                        name="associate_id"
+                        autocomplete="username"
+                        required
+                    />
+
+                    <p
+                        class="form-field__error"
+                        data-error-for="associate_id"
+                    ></p>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label for="associatePassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="associatePassword"
+                        name="password"
+                        autocomplete="current-password"
+                        required
+                    />
+
+                    <p
+                        class="form-field__error"
+                        data-error-for="password"
+                    ></p>
+
+                </div>
+
+
+                <div
+                    id="associateLoginError"
+                    class="auth-message auth-message--error"
+                    hidden
+                ></div>
+
+
+                <button
+                    type="submit"
+                    id="associateLoginSubmit"
+                    class="button button--primary"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+
+            <div class="auth-card__footer">
+
+                <p>
+                    Website administrator?
+                    <a
+                        href="/admin-login/"
+                        class="auth-admin-link"
+                    >
+                        Admin Login
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

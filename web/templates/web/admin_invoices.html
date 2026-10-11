@@ -1,0 +1,149 @@
+{% extends "web/base.html" %}
+
+{% block content %}
+
+<section class="admin-page">
+
+    <div class="container">
+
+        <header class="admin-page__header">
+
+            <div>
+                <span class="admin-page__eyebrow">
+                    Admin
+                </span>
+
+                <h1>Invoices</h1>
+
+                <p>
+                    View and manage payment acknowledgements.
+                </p>
+            </div>
+
+            <a
+                href="/admin-invoices/create/"
+                class="button button--primary"
+            >
+                Create Invoice
+            </a>
+
+        </header>
+
+
+        <section class="invoice-filters">
+
+            <div class="invoice-search">
+
+                <label for="invoiceSearch">
+                    Search
+                </label>
+
+                <input
+                    type="search"
+                    id="invoiceSearch"
+                    placeholder="Search invoice number..."
+                >
+
+            </div>
+
+
+            <div class="invoice-filter-field">
+
+                <label for="invoiceStatus">
+                    Status
+                </label>
+
+                <select id="invoiceStatus">
+
+                    <option value="">
+                        All statuses
+                    </option>
+
+                    <option value="draft">
+                        Draft
+                    </option>
+
+                    <option value="issued">
+                        Issued
+                    </option>
+
+                    <option value="paid">
+                        Paid
+                    </option>
+
+                    <option value="cancelled">
+                        Cancelled
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="invoice-filter-field">
+
+                <label for="invoiceDate">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="invoiceDate"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="button button--secondary invoice-clear-button"
+                id="invoiceClearFilters"
+            >
+                Clear
+            </button>
+
+        </section>
+
+
+        <div
+            id="invoiceError"
+            class="auth-message auth-message--error"
+            hidden
+        ></div>
+
+
+        <div
+            id="invoiceLoading"
+            class="admin-state"
+        >
+            Loading invoices...
+        </div>
+
+
+        <div
+            id="invoiceEmpty"
+            class="admin-state"
+            hidden
+        >
+            No invoices found.
+        </div>
+
+
+        <div
+            id="invoiceList"
+            class="invoice-list"
+        ></div>
+
+
+        <nav
+            id="invoicePagination"
+            class="invoice-pagination"
+            aria-label="Invoice pagination"
+            hidden
+        ></nav>
+
+    </div>
+
+</section>
+
+{% endblock %}

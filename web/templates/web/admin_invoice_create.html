@@ -1,0 +1,444 @@
+{% extends "web/base.html" %}
+
+{% block content %}
+
+<section class="admin-page">
+
+    <div class="container">
+
+        <div class="invoice-create-page">
+
+            <a
+                href="/admin-invoices/"
+                class="invoice-detail__back"
+            >
+                ← Back to invoices
+            </a>
+
+
+            <header class="admin-page__header">
+                <div>
+                    <span class="admin-page__eyebrow">
+                        Admin
+                    </span>
+
+                    <h1>Create Invoice</h1>
+
+                    <p>
+                        Create an invoice for an existing customer.
+                    </p>
+                </div>
+            </header>
+
+
+            <form
+                id="createInvoiceForm"
+                class="invoice-form"
+                novalidate
+            >
+
+                {% csrf_token %}
+
+
+                <section class="invoice-form__section">
+
+                    <h2>Customer</h2>
+
+                    <div class="form-field">
+                        <label for="invoiceCustomerMode">
+                            Customer Type
+                        </label>
+
+                        <select
+                            id="invoiceCustomerMode"
+                            name="customer_mode"
+                        >
+                            <option value="existing">
+                                Existing Customer
+                            </option>
+
+                            <option value="new">
+                                Create New Customer
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div id="existingCustomerFields">
+
+                        <div class="form-field">
+
+                            <label for="invoiceCustomer">
+                                Customer
+                            </label>
+
+                            <select
+                                id="invoiceCustomer"
+                                name="customer"
+                            >
+                                <option value="">
+                                    Select customer
+                                </option>
+                            </select>
+
+                            <small
+                                class="form-field__error"
+                                data-error-for="customer"
+                            ></small>
+
+                        </div>
+
+
+                        <div
+                            id="customerPreview"
+                            class="customer-preview"
+                            hidden
+                        >
+                            <div>
+                                <span>Name</span>
+                                <strong id="previewCustomerName">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Phone</span>
+                                <strong id="previewCustomerPhone">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Address</span>
+                                <strong id="previewCustomerAddress">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Project</span>
+                                <strong id="previewCustomerProject">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Plot Area</span>
+                                <strong id="previewCustomerPlotArea">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Plot Rate</span>
+                                <strong id="previewCustomerPlotRate">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Plot Cost</span>
+                                <strong id="previewCustomerPlotCost">—</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div id="newCustomerFields" hidden>
+
+                        <div class="invoice-form__grid">
+
+                            <div class="form-field">
+                                <label for="newCustomerName">
+                                    Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="newCustomerName"
+                                    placeholder="Customer name"
+                                >
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="newCustomerPhone">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="newCustomerPhone"
+                                    placeholder="Phone number"
+                                >
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="newCustomerAddress">
+                                    Address
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="newCustomerAddress"
+                                    placeholder="Customer address"
+                                >
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="newCustomerProject">
+                                    Project
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="newCustomerProject"
+                                    placeholder="Project name"
+                                >
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="newCustomerPlotArea">
+                                    Plot Area
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="newCustomerPlotArea"
+                                    placeholder="e.g. 500 Sq.Ft."
+                                >
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="newCustomerPlotRate">
+                                    Plot Rate
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="newCustomerPlotRate"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="0.00"
+                                >
+                            </div>
+
+
+                            <div class="form-field">
+                                <label for="newCustomerPlotCost">
+                                    Plot Cost
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="newCustomerPlotCost"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="0.00"
+                                >
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="invoice-form__section">
+
+                    <h2>Payment Details</h2>
+
+                    <div class="invoice-form__grid">
+
+                        <div class="form-field">
+                            <label for="invoicePaymentType">Payment Type</label>
+                            <input
+                                type="text"
+                                id="invoicePaymentType"
+                                name="invoicePaymentType"
+                                placeholder="e.g. EMI Payment"
+                            >
+                        </div>
+                        <div class="form-field">
+                            <label for="invoicePaymentMode">Payment Mode</label>
+                            <input
+                                type="text"
+                                id="invoicePaymentMode"
+                                name="invoicePaymentMode"
+                                placeholder="e.g. IMPS/Upi"
+                            >
+                        </div>
+                        <div class="form-field">
+                            <label for="invoiceTransactionId">Transaction ID</label>
+                            <input
+                                type="text"
+                                id="invoiceTransactionId"
+                                name="invoiceTransactionId"
+                                placeholder="Transaction ID"
+                            >
+                        </div>
+                        <div class="form-field">
+                            <label for="invoiceBankName">Bank Name</label>
+                            <input
+                                type="text"
+                                id="invoiceBankName"
+                                name="invoiceBankName"
+                                placeholder="Bank name"
+                            >
+                        </div>                            
+
+
+                        <div class="form-field">
+
+                            <label for="invoiceAmount">
+                                Amount
+                            </label>
+
+                            <input
+                                type="number"
+                                id="invoiceAmount"
+                                name="amount"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="Enter amount"
+                                required
+                            >
+
+                            <small
+                                class="form-field__error"
+                                data-error-for="invoiceAmount"
+                            ></small>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="invoiceDate">
+                                Invoice Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="invoiceDate"
+                                name="invoice_date"
+                                required
+                            >
+
+                            <small
+                                class="form-field__error"
+                                data-error-for="invoiceDate"
+                            ></small>
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="invoiceStatus">
+                                Status
+                            </label>
+
+                            <select
+                                id="invoiceStatus"
+                                name="status"
+                            >
+                                <option value="draft">
+                                    Draft
+                                </option>
+
+                                <option value="issued">
+                                    Issued
+                                </option>
+
+                                <option value="paid">
+                                    Paid
+                                </option>
+
+                                <option value="cancelled">
+                                    Cancelled
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Payment Details -->
+                    <div class="form-section">
+                        <h3>Deal Summary</h3>
+
+                        <div class="form-grid">
+
+                            <!-- <div class="form-field">
+                                <label for="paid_amount">Paid Amount</label>
+                                <input
+                                    type="number"
+                                    id="paid_amount"
+                                    name="paid_amount"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="0.00"
+                                >
+                            </div> -->
+                            <div class="form-field">
+                                <label for="invoiceTotalPaid">Total Paid</label>
+                                <input
+                                    type="number"
+                                    id="invoiceTotalPaid"
+                                    name="invoiceTotalPaid"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="0.00"
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="invoiceDueAmount">Due Amount</label>
+                                <input
+                                    type="number"
+                                    id="invoiceDueAmount"
+                                    name="invoiceDueAmount"
+                                    step="0.01"
+                                    min="0"
+                                    placeholder="0.00"
+                                >
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <div
+                    id="createInvoiceError"
+                    class="auth-message auth-message--error"
+                    hidden
+                ></div>
+
+
+                <div class="invoice-form__actions">
+
+                    <a
+                        href="/admin-invoices/"
+                        class="button button--secondary"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="button button--primary"
+                        id="createInvoiceSubmit"
+                    >
+                        Create Invoice
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
